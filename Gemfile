@@ -9,6 +9,9 @@ group :development, :test do
   gem "byebug"
   gem "rspec"
   gem "rspec-rails"
+  gem "guard"
+  gem "guard-rspec"
+  gem "guard-bundler"
 end
 
 group :development do
