@@ -11,7 +11,7 @@ RSpec.describe GatewayController, type: :controller do
         expect(subject).to redirect_to(url.link)
       end
 
-      it "respond with `moved permanently` status" do
+      it "respond with a `moved permanently` status" do
         get(:redirect, slug: url.slug)
 
         expect(response.code.to_i).to eq(301)
