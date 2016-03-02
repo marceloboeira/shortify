@@ -8,6 +8,8 @@ gem "grape"
 gem "grape-active_model_serializers"
 gem "active_model_serializers"
 
+gem "config"
+
 group :development, :test do
   gem "byebug"
   gem "rspec"
