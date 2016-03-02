@@ -6,7 +6,6 @@ RSpec.describe Url, type: :model do
       let(:url) { Url.new }
 
       it "link" do
-
         expect(url).to_not be_valid
         expect(url.errors[:link]).to eq(["can't be blank"])
       end
