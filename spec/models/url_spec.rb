@@ -19,10 +19,10 @@ RSpec.describe Url, type: :model do
     end
   end
 
-  describe "slug behavior" do
+  context "when creating" do
     let!(:url) { Url.create(params) }
 
-    context "when slug is nil" do
+    context "and slug is nil" do
       let(:params) { { original: "http://foo.bar" } }
 
       it "generate slug" do
@@ -30,7 +30,7 @@ RSpec.describe Url, type: :model do
       end
     end
 
-    context "when slug is not nil" do
+    context "and slug is not nil" do
       let(:params) { { original: "http://foo.bar", slug: "foo" } }
 
       it "use the given slug" do
