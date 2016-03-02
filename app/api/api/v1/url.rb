@@ -9,9 +9,16 @@ class API::V1::Url < Grape::API
 
     params do
       requires :link, type: String
+      optional :slug, type: String
     end
     post do
-      ::Url.create(params.to_h)
+      url = ::Url.new(params.to_h)
+
+      if !url.save
+        error!({ errors: url.errors }, 403)
+      end
+
+      url
     end
   end
 end

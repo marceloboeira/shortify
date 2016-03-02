@@ -54,6 +54,26 @@ RSpec.describe API::V1::Url do
 
         expect(json_response).to eq(default_response)
       end
+
+      context "with slug" do
+        it "use the given slug" do
+          post("/api/urls", params.merge(slug: "foo-bar"))
+
+          expect(json_response["url"]["slug"]).to eq("foo-bar")
+        end
+
+        context "with repeated slug" do
+          let(:slug_repeated_params) { params.merge(slug: "foo") }
+
+          it "respond with validation message" do
+            Url.create!(slug_repeated_params)
+
+            post("/api/urls", slug_repeated_params)
+
+            expect(json_response["errors"]).to include("slug" => ["is already taken"])
+          end
+        end
+      end
     end
 
     context "with invalid params" do
