@@ -16,10 +16,18 @@ RSpec.describe API::V1::Url do
     }
 
     context "with a valid id" do
-      it "returns a url" do
+      it "returns a serialized url" do
         get "/api/urls/#{url.to_param}"
 
         expect(json_response).to eq(default_response)
+      end
+    end
+
+    context "with an invalid id" do
+      it "returns a 404" do
+        get "/api/urls/invalid_id"
+
+        expect(response.code.to_i).to eq(404)
       end
     end
   end
