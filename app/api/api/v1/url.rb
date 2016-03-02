@@ -6,5 +6,12 @@ class API::V1::Url < Grape::API
     get ":id" do
       ::Url.find(params[:id])
     end
+
+    params do
+      requires :link, type: String
+    end
+    post do
+      ::Url.create(params.to_h)
+    end
   end
 end
