@@ -227,7 +227,6 @@ DEPENDENCIES
   rails (= 4.2.4)
   rspec
   rspec-rails
-  spring
   web-console (~> 2.0)
 
 BUNDLED WITH
