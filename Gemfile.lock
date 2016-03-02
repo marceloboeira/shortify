@@ -45,14 +45,13 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bson (3.2.6)
+    bson (4.0.3)
     builder (3.2.2)
     byebug (6.0.2)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    connection_pool (2.2.0)
-    database_cleaner (1.4.1)
+    database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -109,16 +108,14 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
-    mongoid (4.0.2.1)
+    minitest (5.8.4)
+    mongo (2.2.4)
+      bson (~> 4.0)
+    mongoid (5.1.1)
       activemodel (~> 4.0)
-      moped (~> 2.0.0)
-      origin (~> 2.1)
+      mongo (~> 2.1)
+      origin (~> 2.2)
       tzinfo (>= 0.3.37)
-    moped (2.0.7)
-      bson (~> 3.0)
-      connection_pool (~> 2.0)
-      optionable (~> 0.2.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     nenv (0.2.0)
@@ -127,8 +124,7 @@ GEM
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    optionable (0.2.0)
-    origin (2.1.1)
+    origin (2.2.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -220,7 +216,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   byebug
-  database_cleaner (~> 1.4.1)
+  database_cleaner
   grape
   grape-active_model_serializers
   guard

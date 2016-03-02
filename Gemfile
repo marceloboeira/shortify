@@ -15,7 +15,7 @@ group :development, :test do
   gem "guard"
   gem "guard-rspec"
   gem "guard-bundler"
-  gem "database_cleaner", "~> 1.4.1"
+  gem "database_cleaner"
 end
 
 group :development do
