@@ -21,6 +21,7 @@ RSpec.describe Url, type: :model do
 
   describe "slug behavior" do
     let!(:url) { Url.create(params) }
+
     context "when slug is nil" do
       let(:params) { { original: "http://foo.bar" } }
 
