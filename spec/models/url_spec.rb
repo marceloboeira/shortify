@@ -5,9 +5,9 @@ RSpec.describe Url, type: :model do
     context "presence of" do
       let(:url) { Url.new }
 
-      it "link" do
+      it "original" do
         expect(url).to_not be_valid
-        expect(url.errors[:link]).to eq(["can't be blank"])
+        expect(url.errors[:original]).to eq(["can't be blank"])
       end
 
       it "slug" do
@@ -22,7 +22,7 @@ RSpec.describe Url, type: :model do
   describe "slug behavior" do
     let!(:url) { Url.create(params) }
     context "when slug is nil" do
-      let(:params) { { link: "http://foo.bar" } }
+      let(:params) { { original: "http://foo.bar" } }
 
       it "generate slug" do
         expect(url.slug).to_not be_nil
@@ -30,7 +30,7 @@ RSpec.describe Url, type: :model do
     end
 
     context "when slug is not nil" do
-      let(:params) { { link: "http://foo.bar", slug: "foo" } }
+      let(:params) { { original: "http://foo.bar", slug: "foo" } }
 
       it "use the given slug" do
         expect(url.slug).to eq("foo")

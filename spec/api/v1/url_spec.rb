@@ -2,14 +2,14 @@ require "rails_helper"
 require "support/json_response"
 
 RSpec.describe API::V1::Url do
-  let(:params) { { link: "http://shopify.com/" } }
+  let(:params) { { original: "http://shopify.com/" } }
 
   describe "GET /api/urls/:id" do
     let(:url) { Url.create(params) }
     let(:default_response) {
       { "url" => {
           "id" => url.to_param,
-          "link" => url.link,
+          "original" => url.original,
           "slug" => url.slug
         }
       }
@@ -36,7 +36,7 @@ RSpec.describe API::V1::Url do
     let(:default_response) {
       { "url" => {
         "id" => Url.last.to_param,
-        "link" => Url.last.link,
+        "original" => Url.last.original,
         "slug" => Url.last.slug
         }
       }
@@ -86,7 +86,7 @@ RSpec.describe API::V1::Url do
       end
 
       it "respond with validation message" do
-        expect(json_response).to eq("error" => "link is missing")
+        expect(json_response).to eq("error" => "original is missing")
       end
     end
   end

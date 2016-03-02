@@ -1,14 +1,14 @@
 require "rails_helper"
 
 RSpec.describe GatewayController, type: :controller do
-  let(:url) { Url.create(link: "http://foo.com/bar/long") }
+  let(:url) { Url.create(original: "http://foo.com/bar/long") }
 
   context "when redirecting" do
     context "with a valid slug" do
       it "redirect shorten url to original link" do
         get(:redirect, slug: url.slug)
 
-        expect(subject).to redirect_to(url.link)
+        expect(subject).to redirect_to(url.original)
       end
 
       it "respond with a `moved permanently` status" do

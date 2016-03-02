@@ -8,7 +8,7 @@ class API::V1::Url < Grape::API
     end
 
     params do
-      requires :link, type: String
+      requires :original, type: String
       optional :slug, type: String
     end
     post do

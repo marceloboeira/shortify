@@ -4,7 +4,7 @@ class GatewayController < ApplicationController
   def redirect
     url = Url.find_by(slug: slug)
 
-    redirect_to(url.link, status: :moved_permanently)
+    redirect_to(url.original, status: :moved_permanently)
   end
 
   private

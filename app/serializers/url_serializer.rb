@@ -1,5 +1,5 @@
 class UrlSerializer < ActiveModel::Serializer
-  attributes :id, :link, :slug
+  attributes :id, :original, :slug
 
   def id
     object.to_param
