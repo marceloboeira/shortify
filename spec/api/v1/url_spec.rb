@@ -10,7 +10,8 @@ RSpec.describe API::V1::Url do
       { "url" => {
           "id" => url.to_param,
           "original" => url.original,
-          "slug" => url.slug
+          "slug" => url.slug,
+          "short" => url.short
         }
       }
     }
@@ -37,7 +38,8 @@ RSpec.describe API::V1::Url do
       { "url" => {
         "id" => Url.last.to_param,
         "original" => Url.last.original,
-        "slug" => Url.last.slug
+        "slug" => Url.last.slug,
+        "short" => Url.last.short
         }
       }
     }

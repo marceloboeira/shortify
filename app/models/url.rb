@@ -12,6 +12,10 @@ class Url
 
   index({ slug: 1 }, { unique: true })
 
+  def short
+    URI.join(Settings.host, slug).to_s
+  end
+
   private
 
   def generate_slug

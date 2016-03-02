@@ -47,4 +47,12 @@ RSpec.describe Url, type: :model do
       end
     end
   end
+
+  describe "short url" do
+    let(:url) { Url.create(slug: "foo") }
+
+    it "return a full url" do
+      expect(url.short).to eq("#{Settings.host}/foo")
+    end
+  end
 end
