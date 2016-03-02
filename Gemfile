@@ -3,7 +3,10 @@ source "https://rubygems.org"
 gem "rails", "4.2.4"
 gem "mongoid"
 gem "puma"
+
 gem "grape"
+gem "grape-active_model_serializers"
+gem "active_model_serializers"
 
 group :development, :test do
   gem "byebug"
