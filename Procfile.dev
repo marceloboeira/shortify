@@ -1,0 +1,2 @@
+web: bin/puma -C config/puma.rb
+mongo: mongod --config /usr/local/etc/mongod.conf --logpath log/mongodb.log
