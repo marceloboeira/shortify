@@ -1,4 +1,5 @@
 require "rails_helper"
+require "support/json_response"
 
 RSpec.describe API::V1::Url do
   let(:params) { { link: "http://shopify.com/" } }
@@ -18,7 +19,7 @@ RSpec.describe API::V1::Url do
       it "returns a url" do
         get "/api/urls/#{url.to_param}"
 
-        expect(JSON.parse(response.body)).to eq(default_response)
+        expect(json_response).to eq(default_response)
       end
     end
   end
