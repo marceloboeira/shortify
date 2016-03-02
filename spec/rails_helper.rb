@@ -4,6 +4,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "spec_helper"
 require "rspec/rails"
 
+Dir[Rails.root.join("spec/support/auto/**/*.rb")].each { |f| require f }
+
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
