@@ -2,8 +2,7 @@
 > URL Shortener
 
 ## Commit Policy
-
-We have a very rigid **commit policy**, to contribute please follow these rules:
+> Commit pattern
 
 ```
 feature: Add hat wobble
