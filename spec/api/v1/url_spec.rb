@@ -3,40 +3,40 @@ require "support/json_response"
 
 RSpec.describe API::V1::Url do
   let(:default_params) { { original: "http://foo" } }
+   let(:default_response) {
+     { "url" => {
+         "id" => Url.last.to_param,
+         "original" => Url.last.original,
+         "slug" => Url.last.slug,
+         "short" => Url.last.short
+       }
+     }
+   }
 
-  describe "GET /api/urls/:id" do
-    let(:url) { Url.create(default_params) }
-    let(:default_response) {
-      { "url" => {
-          "id" => url.to_param,
-          "original" => url.original,
-          "slug" => url.slug,
-          "short" => url.short
-        }
-      }
-    }
+   describe "GET /api/urls/:id" do
+     let(:url) { Url.create(default_params) }
 
-    context "with a valid id" do
-      it "return a serialized url" do
-        get "/api/urls/#{url.to_param}"
+     context "with a valid id" do
+       it "return a serialized url" do
+         get "/api/urls/#{url.to_param}"
 
-        expect(json_response).to eq(default_response)
-      end
-    end
+         expect(json_response).to eq(default_response)
+       end
+     end
 
-    context "with an invalid id" do
-      it "return not found" do
-        get "/api/urls/invalid_id"
+     context "with an invalid id" do
+       it "return not found" do
+         get "/api/urls/invalid_id"
 
-        expect(response.code.to_i).to eq(404)
-      end
-    end
-  end
+         expect(response.code.to_i).to eq(404)
+       end
+     end
+   end
 
-  describe "POST /api/urls" do
-    let(:default_response) {
-      { "url" => {
-        "id" => Url.last.to_param,
+   describe "POST /api/urls" do
+     let(:default_response) {
+       { "url" => {
+         "id" => Url.last.to_param,
         "original" => Url.last.original,
         "slug" => Url.last.slug,
         "short" => Url.last.short
@@ -96,15 +96,6 @@ RSpec.describe API::V1::Url do
   describe "PUT /api/urls/:id" do
     let(:update_params) { { original: "http://bar" } }
     let(:url) { Url.create(default_params) }
-    let(:default_response) {
-      { "url" => {
-        "id" => Url.last.to_param,
-        "original" => Url.last.original,
-        "slug" => Url.last.slug,
-        "short" => Url.last.short
-        }
-      }
-    }
 
     context "with valid params" do
       it "update the url" do
