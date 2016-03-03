@@ -25,7 +25,7 @@ RSpec.describe API::V1::Url do
       it "returns success" do
         get "/api/urls/#{url.to_param}"
 
-        expect(response.code.to_i).to eq(200)
+        expect(response).to be_success
       end
     end
 
@@ -33,7 +33,7 @@ RSpec.describe API::V1::Url do
       it "returns not found" do
         get "/api/urls/invalid_id"
 
-        expect(response.code.to_i).to eq(404)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
@@ -102,7 +102,7 @@ RSpec.describe API::V1::Url do
       it "returns success" do
         put("/api/urls/#{url.to_param}", update_params)
 
-        expect(response.code.to_i).to eq(200)
+        expect(response).to be_success
       end
 
       it "returns a serialized url" do
@@ -120,7 +120,7 @@ RSpec.describe API::V1::Url do
       end
 
       it "returns bad request" do
-        expect(response.code.to_i).to eq(400)
+        expect(response).to have_http_status(:bad_request)
       end
 
       it "responds with validation message" do

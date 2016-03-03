@@ -14,7 +14,7 @@ RSpec.describe GatewayController, type: :controller do
       it "responds with a `moved permanently` status" do
         get(:redirect, slug: url.slug)
 
-        expect(response.code.to_i).to eq(301)
+        expect(response).to have_http_status(:moved_permanently)
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe GatewayController, type: :controller do
       it "responds with a `not found` status" do
         get(:redirect, slug: "invalid")
 
-        expect(response.code.to_i).to eq(404)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
