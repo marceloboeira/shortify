@@ -25,7 +25,7 @@ RSpec.describe Url, type: :model do
     context "and slug is nil" do
       let(:params) { { original: "http://foo.bar" } }
 
-      it "generate slug" do
+      it "generates slug" do
         expect(url.slug).to_not be_nil
       end
     end
@@ -33,12 +33,12 @@ RSpec.describe Url, type: :model do
     context "and slug is not nil" do
       let(:params) { { original: "http://foo.bar", slug: "foo" } }
 
-      it "use the given slug" do
+      it "uses the given slug" do
         expect(url.slug).to eq("foo")
       end
 
       context "and there is already a slug like it" do
-        it "generate a uniqueness error" do
+        it "generates a uniqueness error" do
           repeated_url = Url.new(params)
 
           expect(repeated_url).to_not be_valid
@@ -51,7 +51,7 @@ RSpec.describe Url, type: :model do
   describe "short url" do
     let(:url) { Url.create(slug: "foo") }
 
-    it "return a full url" do
+    it "returns a full url" do
       expect(url.short).to eq("#{Settings.host}/foo")
     end
   end

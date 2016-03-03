@@ -16,13 +16,13 @@ RSpec.describe API::V1::Url do
     let(:url) { Url.create(default_params) }
 
     context "with a valid id" do
-      it "return a serialized url" do
+      it "returns a serialized url" do
         get "/api/urls/#{url.to_param}"
 
         expect(json_response).to eq(default_response)
       end
 
-      it "return success" do
+      it "returns success" do
         get "/api/urls/#{url.to_param}"
 
         expect(response.code.to_i).to eq(200)
@@ -30,7 +30,7 @@ RSpec.describe API::V1::Url do
     end
 
     context "with an invalid id" do
-      it "return not found" do
+      it "returns not found" do
         get "/api/urls/invalid_id"
 
         expect(response.code.to_i).to eq(404)
@@ -40,20 +40,20 @@ RSpec.describe API::V1::Url do
 
   describe "POST /api/urls" do
     context "with valid params" do
-      it "insert the url" do
+      it "inserts a url" do
         expect{
           post("/api/urls", default_params)
         }.to change{ Url.count }.by(1)
       end
 
-      it "return a serialized url" do
+      it "returns a serialized url" do
         post("/api/urls", default_params)
 
         expect(json_response).to eq(default_response)
       end
 
       context "with slug" do
-        it "use the given slug" do
+        it "uses the given slug" do
           post("/api/urls",  default_params.merge(slug: "foo-bar"))
 
           expect(json_response["url"]["slug"]).to eq("foo-bar")
@@ -62,7 +62,7 @@ RSpec.describe API::V1::Url do
         context "with repeated slug" do
           let(:slug_repeated_params) { default_params.merge(slug: "foo") }
 
-          it "respond with validation message" do
+          it "responds with validation message" do
             Url.create!(slug_repeated_params)
 
             post("/api/urls", slug_repeated_params)
@@ -78,11 +78,11 @@ RSpec.describe API::V1::Url do
         post("/api/urls", {})
       end
 
-      it "return bad request" do
+      it "returns bad request" do
         expect(response.code.to_i).to eq(400)
       end
 
-      it "respond with validation message" do
+      it "responds with validation message" do
         expect(json_response).to eq("error" => "original is missing")
       end
     end
@@ -93,19 +93,19 @@ RSpec.describe API::V1::Url do
     let(:url) { Url.create(default_params) }
 
     context "with valid params" do
-      it "update the url" do
+      it "updates the url" do
         expect{
           put("/api/urls/#{url.to_param}", update_params)
         }.to change{ url.reload.original }.to(update_params[:original])
       end
 
-      it "return success" do
+      it "returns success" do
         put("/api/urls/#{url.to_param}", update_params)
 
         expect(response.code.to_i).to eq(200)
       end
 
-      it "return a serialized url" do
+      it "returns a serialized url" do
         put("/api/urls/#{url.to_param}", update_params)
 
         expect(json_response).to eq(default_response)
@@ -119,11 +119,11 @@ RSpec.describe API::V1::Url do
         put("/api/urls/#{url.to_param}", update_params)
       end
 
-      it "return bad request" do
+      it "returns bad request" do
         expect(response.code.to_i).to eq(400)
       end
 
-      it "respond with validation message" do
+      it "responds with validation message" do
         expect(json_response).to eq("error" => "original is invalid")
       end
     end

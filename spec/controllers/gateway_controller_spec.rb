@@ -5,13 +5,13 @@ RSpec.describe GatewayController, type: :controller do
 
   context "when redirecting" do
     context "with a valid slug" do
-      it "redirect shorten url to original link" do
+      it "redirects shorten url to original link" do
         get(:redirect, slug: url.slug)
 
         expect(subject).to redirect_to(url.original)
       end
 
-      it "respond with a `moved permanently` status" do
+      it "responds with a `moved permanently` status" do
         get(:redirect, slug: url.slug)
 
         expect(response.code.to_i).to eq(301)
@@ -19,7 +19,7 @@ RSpec.describe GatewayController, type: :controller do
     end
 
     context "with an invalid slug" do
-      it "respond with a `not found` status" do
+      it "responds with a `not found` status" do
         get(:redirect, slug: "invalid")
 
         expect(response.code.to_i).to eq(404)
