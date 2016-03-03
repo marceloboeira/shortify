@@ -3,124 +3,129 @@ require "support/json_response"
 
 RSpec.describe API::V1::Url do
   let(:default_params) { { original: "http://foo" } }
-   let(:default_response) {
-     { "url" => {
-         "id" => Url.last.to_param,
-         "original" => Url.last.original,
-         "slug" => Url.last.slug,
-         "short" => Url.last.short
-       }
-     }
-   }
+  let(:default_response) {
+    { "url" => {
+      "id" => Url.last.to_param,
+      "original" => Url.last.original,
+      "slug" => Url.last.slug,
+      "short" => Url.last.short }
+    }
+  }
 
-   describe "GET /api/urls/:id" do
-     let(:url) { Url.create(default_params) }
+  describe "GET /api/urls/:id" do
+    let(:url) { Url.create(default_params) }
 
-     context "with a valid id" do
-       it "return a serialized url" do
-         get "/api/urls/#{url.to_param}"
+    context "with a valid id" do
+      it "return a serialized url" do
+        get "/api/urls/#{url.to_param}"
 
-         expect(json_response).to eq(default_response)
-       end
-     end
+        expect(json_response).to eq(default_response)
+      end
 
-     context "with an invalid id" do
-       it "return not found" do
-         get "/api/urls/invalid_id"
+      it "return success" do
+        get "/api/urls/#{url.to_param}"
 
-         expect(response.code.to_i).to eq(404)
-       end
-     end
-   end
+        expect(response.code.to_i).to eq(200)
+      end
+    end
 
-   describe "POST /api/urls" do
-     context "with valid params" do
-       it "insert the url" do
-         expect{
-           post("/api/urls", default_params)
-         }.to change{ Url.count }.by(1)
-       end
+    context "with an invalid id" do
+      it "return not found" do
+        get "/api/urls/invalid_id"
 
-       it "return a serialized url" do
-         post("/api/urls", default_params)
+        expect(response.code.to_i).to eq(404)
+      end
+    end
+  end
 
-         expect(json_response).to eq(default_response)
-       end
+  describe "POST /api/urls" do
+    context "with valid params" do
+      it "insert the url" do
+        expect{
+          post("/api/urls", default_params)
+        }.to change{ Url.count }.by(1)
+      end
 
-       context "with slug" do
-         it "use the given slug" do
-           post("/api/urls",  default_params.merge(slug: "foo-bar"))
+      it "return a serialized url" do
+        post("/api/urls", default_params)
 
-           expect(json_response["url"]["slug"]).to eq("foo-bar")
-         end
+        expect(json_response).to eq(default_response)
+      end
 
-         context "with repeated slug" do
-           let(:slug_repeated_params) { default_params.merge(slug: "foo") }
+      context "with slug" do
+        it "use the given slug" do
+          post("/api/urls",  default_params.merge(slug: "foo-bar"))
 
-           it "respond with validation message" do
-             Url.create!(slug_repeated_params)
+          expect(json_response["url"]["slug"]).to eq("foo-bar")
+        end
 
-             post("/api/urls", slug_repeated_params)
+        context "with repeated slug" do
+          let(:slug_repeated_params) { default_params.merge(slug: "foo") }
 
-             expect(json_response["errors"]).to include("slug" => ["is already taken"])
-           end
-         end
-       end
-     end
+          it "respond with validation message" do
+            Url.create!(slug_repeated_params)
 
-     context "with invalid params" do
-       before do
-         post("/api/urls", {})
-       end
+            post("/api/urls", slug_repeated_params)
 
-       it "return bad request" do
-         expect(response.code.to_i).to eq(400)
-       end
+            expect(json_response["errors"]).to include("slug" => ["is already taken"])
+          end
+        end
+      end
+    end
 
-       it "respond with validation message" do
-         expect(json_response).to eq("error" => "original is missing")
-       end
-     end
-   end
+    context "with invalid params" do
+      before do
+        post("/api/urls", {})
+      end
 
-   describe "PUT /api/urls/:id" do
-     let(:update_params) { { original: "http://bar" } }
-     let(:url) { Url.create(default_params) }
+      it "return bad request" do
+        expect(response.code.to_i).to eq(400)
+      end
 
-     context "with valid params" do
-       it "update the url" do
-         expect{
-           put("/api/urls/#{url.to_param}", update_params)
-         }.to change{ url.reload.original }.to(update_params[:original])
-       end
+      it "respond with validation message" do
+        expect(json_response).to eq("error" => "original is missing")
+      end
+    end
+  end
 
-       it "return success" do
-         put("/api/urls/#{url.to_param}", update_params)
+  describe "PUT /api/urls/:id" do
+    let(:update_params) { { original: "http://bar" } }
+    let(:url) { Url.create(default_params) }
 
-         expect(response.code.to_i).to eq(200)
-       end
+    context "with valid params" do
+      it "update the url" do
+        expect{
+          put("/api/urls/#{url.to_param}", update_params)
+        }.to change{ url.reload.original }.to(update_params[:original])
+      end
 
-       it "return a serialized url" do
-         put("/api/urls/#{url.to_param}", update_params)
+      it "return success" do
+        put("/api/urls/#{url.to_param}", update_params)
 
-         expect(json_response).to eq(default_response)
-       end
-     end
+        expect(response.code.to_i).to eq(200)
+      end
 
-     context "with invalid params" do
-       let(:update_params) { { original: ["invalid", "original"] } }
+      it "return a serialized url" do
+        put("/api/urls/#{url.to_param}", update_params)
 
-       before do
-         put("/api/urls/#{url.to_param}", update_params)
-       end
+        expect(json_response).to eq(default_response)
+      end
+    end
 
-       it "return bad request" do
-         expect(response.code.to_i).to eq(400)
-       end
+    context "with invalid params" do
+      let(:update_params) { { original: ["invalid", "original"] } }
 
-       it "respond with validation message" do
-         expect(json_response).to eq("error" => "original is invalid")
-       end
-     end
-   end
+      before do
+        put("/api/urls/#{url.to_param}", update_params)
+      end
+
+      it "return bad request" do
+        expect(response.code.to_i).to eq(400)
+      end
+
+      it "respond with validation message" do
+        expect(json_response).to eq("error" => "original is invalid")
+      end
+    end
+  end
 end
