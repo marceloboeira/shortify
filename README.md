@@ -1,8 +1,9 @@
 # Shortify
 > URL Shortener
 
-The complete assignment description is available [here](docs/ASSIGNMENT.md).
+The complete assignment description is available at the [docs/ASSIGNMENT.md](docs/ASSIGNMENT.md) file.
 
+Some information about stack choice is available at the [docs/COMMENTS.md](docs/COMMENTS.md) file.
 
 ### Setup
 
