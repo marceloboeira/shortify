@@ -29,3 +29,16 @@ Hopefully by now the project is running
 Shortify has a built in REST like API, where you can manage your Shortened URLs.
 More information at the [`docs/API.md`](docs/API.md) file.
 
+### Roadmap
+
+Some nice things I would like to implement in the future.
+
+- [ ] Benchmarks
+- [ ] API dynamic documentation (Swagger)
+- [ ] API Authentication
+- [ ] Custom Cache-control (Related to stats vs crawlers)
+- [ ] Pretty error pages
+- [ ] Grape/Mongo validators (Url/Slug)
+- [ ] Expiration Date
+- [ ] Statistics (Access, origins, user-agent...)
+- [ ] Automated deploy
