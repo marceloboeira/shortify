@@ -20,6 +20,10 @@ If you use `foreman`, there is two options available:
 
 Hopefully by now the project is running
 
+### Tests
+
+To run the tests, make sure mongo is up, then: `bundle exec rspec`
+
 ---
 
 ## Usage
