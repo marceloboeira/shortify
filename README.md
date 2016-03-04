@@ -1,6 +1,9 @@
 # Shortify
 > URL Shortener
 
+The complete assignment description is available [here](docs/ASSIGNMENT.md).
+
+
 ### Setup
 
 Assuming that you already had Mongo and Ruby/Bundler installed, you can just run: `bundle install`
