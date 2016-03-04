@@ -20,3 +20,12 @@ If you use `foreman`, there is two options available:
 
 Hopefully by now the project is running
 
+---
+
+## Usage
+
+### API
+
+Shortify has a built in REST like API, where you can manage your Shortened URLs.
+More information at the [`docs/API.md`](docs/API.md) file.
+
