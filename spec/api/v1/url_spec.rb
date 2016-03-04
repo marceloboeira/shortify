@@ -128,4 +128,30 @@ RSpec.describe API::V1::Url do
       end
     end
   end
+
+  describe "DELETE /api/urls/:id" do
+    let!(:url) { Url.create(default_params) }
+
+    context "with valid params" do
+      it "destroys the url" do
+        expect{
+          delete("/api/urls/#{url.to_param}")
+        }.to change{Url.count}.by(-1)
+
+      end
+      it "returns success" do
+        delete("/api/urls/#{url.to_param}")
+
+        expect(response).to be_success
+      end
+    end
+
+    context "with invalid params" do
+      it "returns bad request" do
+        delete("/api/urls/invalid_id")
+
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end

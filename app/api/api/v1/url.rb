@@ -35,5 +35,14 @@ class API::V1::Url < Grape::API
 
       url
     end
+
+    params do
+      requires :id, type: String
+    end
+    delete ":id" do
+      url = ::Url.find(params[:id])
+
+      url.delete
+    end
   end
 end
