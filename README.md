@@ -29,7 +29,19 @@ Hopefully by now the project is running
 Shortify has a built in REST like API, where you can manage your Shortened URLs.
 More information at the [`docs/API.md`](docs/API.md) file.
 
-### Roadmap
+### Gateway
+
+The API provides a shortened url, based on the host of the environment. The host can be set in the settings file of each environment.
+
+Basically every shortened url will look like: `http://shfy.ca/a32b7` -> `http://{HOST}/{SLUG}`
+
+#### Redirecting
+
+Currently the request status for the redirection is hardcoded to 301, mostly because it seems the right thing to do, once you have the DNS caching. That should be revisited if you want to have statistics of access.
+
+---
+
+## Roadmap
 
 Some nice things I would like to implement in the future.
 
