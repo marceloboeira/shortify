@@ -10,6 +10,10 @@ gem "active_model_serializers"
 
 gem "config"
 
+group :production do
+  gem "rails_12factor"
+end
+
 group :development, :test do
   gem "byebug"
   gem "rspec"

@@ -6,4 +6,3 @@ threads 1, 10
 workers 2
 bind "tcp://0.0.0.0:#{ENV["PORT"]}"
 preload_app!
-tag "csi"
