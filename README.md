@@ -55,6 +55,7 @@ Some nice things I would like to implement in the future.
 - [ ] Custom Cache-control (Related to stats vs crawlers)
 - [ ] Pretty error pages
 - [ ] Grape/Mongo validators (Url/Slug)
+- [ ] Search/get by slug
 - [ ] Expiration Date
 - [ ] Statistics (Access, origins, user-agent...)
 - [ ] Automated deploy
