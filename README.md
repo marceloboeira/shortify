@@ -11,12 +11,12 @@ Assuming that you already had Mongo and Ruby/Bundler installed, you can just run
 
 ### Running
 
-Once everything is installed, you can run: `bin/rails server`
+After complete the setup, you can run: `bin/rails server`
 
 If you use `foreman`, there is two options available:
 
 * `foreman start -f Procfile` - Runs the default web server
-* `foreman start -f Procfile.dev` - Runs the webserver as also a mongodb server
+* `foreman start -f Procfile.dev` - Runs the webserver and also a local mongodb server
 
 Hopefully by now the project is running
 
