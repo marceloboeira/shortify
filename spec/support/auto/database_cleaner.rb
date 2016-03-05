@@ -4,8 +4,10 @@ RSpec.configure do |config|
     DatabaseCleaner[:mongoid].clean_with(:truncation)
   end
 
-  config.before(:each) do
-    DatabaseCleaner.clean
-    DatabaseCleaner.start
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      Url.destroy_all
+      example.run
+    end
   end
 end
