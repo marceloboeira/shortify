@@ -21,7 +21,7 @@ group :development, :test do
   gem "guard"
   gem "guard-rspec"
   gem "guard-bundler"
-  gem "database_cleaner"
+  gem "database_cleaner", github: "DatabaseCleaner/database_cleaner"
 end
 
 group :development do
