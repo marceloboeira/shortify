@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   def index; end
 
   def not_found
-    redirect_to root_path, status: :not_found
+    render :not_found, status: :not_found
   end
 end
