@@ -45,11 +45,27 @@ Currently the request status for the redirection is hardcoded to 301, mostly bec
 
 ---
 
+### Benchmarks
+
+The benchmarks were perfomed with [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html), running along with the webserver on my own local machine, the resuts were satisfatory, considering the stack and the conditions.
+
+**Test params**:
+
+- Goal: 10k requests
+- Conditions: 100 concurrent requests
+- Url: http://localhost:5000/example_slug
+- Command line example: `ab -c 100 -n 10000 -g results.data http://localhost:5000/example`
+
+**Results**
+> results ploted with [gnuplot](http://gnuplot.info)
+
+![benchmark](./docs/benchmark.png "benchmark")
+
 ## Roadmap
 
 Some nice things I would like to implement in the future.
 
-- [ ] Benchmarks
+- [x] ~Benchmarks~ (maybe with a automated infrastructure)
 - [ ] API dynamic documentation (Swagger)
 - [ ] API Authentication
 - [ ] Custom Cache-control (Related to stats vs crawlers)
