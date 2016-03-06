@@ -148,7 +148,7 @@
 
 * **Method:**
 
-  `PUT`
+  `DELETE`
 
 *  **URL Params**
 
