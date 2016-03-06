@@ -65,13 +65,16 @@ The benchmarks were perfomed with [ApacheBench](https://httpd.apache.org/docs/2.
 
 Some nice things I would like to implement in the future.
 
-- [x] ~Benchmarks~ (maybe with a automated infrastructure)
 - [ ] API dynamic documentation (Swagger)
 - [ ] API Authentication
 - [ ] Custom Cache-control (Related to stats vs crawlers)
+- [ ] Improve api-database reliability
+- [ ] Improve benchmarks
 - [ ] Pretty error pages
 - [ ] Grape/Mongo validators (Url/Slug)
 - [ ] Search/get by slug
 - [ ] Expiration Date
 - [ ] Statistics (Access, origins, user-agent...)
 - [ ] Automated deploy
+- [ ] Logging (GrapeLogger/Middleware logger)
+- [ ] Monitoring (NewRelic)

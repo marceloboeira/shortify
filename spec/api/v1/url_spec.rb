@@ -139,6 +139,7 @@ RSpec.describe API::V1::Url do
         }.to change{Url.count}.by(-1)
 
       end
+
       it "returns success" do
         delete("/api/urls/#{url.to_param}")
 
